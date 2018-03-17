@@ -4,10 +4,12 @@ services:
     network_mode: bridge
     image: "jekyll/jekyll:3.6.2"
     command: "jekyll server"
+    environment:
+      - JEKYLL_ENV=production
     volumes:
-      - "$PWD:/srv/jekyll"
+      - "$PWD/test/test-site:/srv/jekyll"
     labels:
-      - "traefik.frontend.rule=Host:pabloduo.com"
+      - "traefik.frontend.rule=Host:testme.io"
       - "traefik.enable=true"
     depends_on:
       - "reverse-proxy"
