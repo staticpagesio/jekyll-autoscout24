@@ -3,8 +3,12 @@
 
 ### Jekyll ###
 _site/
+_data/
 .sass-cache/
 .jekyll-metadata
+*.txt
+*.md
+_config.yml
 
 
 # End of https://www.gitignore.io/api/jekyll
