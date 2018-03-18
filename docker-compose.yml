@@ -8,6 +8,7 @@ services:
       - JEKYLL_ENV=production
     volumes:
       - "$PWD/test/test-site:/srv/jekyll"
+      - "$PWD:/srv/jekyll-autoscout24"
     labels:
       - "traefik.frontend.rule=Host:testme.io"
       - "traefik.enable=true"

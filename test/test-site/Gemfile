@@ -17,6 +17,7 @@ gem "jekyll", "3.6.2"
 
 gem "jekyll-theme-assets", "0.1.2"
 gem "jekyll-theme-pages", "0.1.0"
+gem "jekyll-autoscout24", :path => "/srv/jekyll-autoscout24"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
