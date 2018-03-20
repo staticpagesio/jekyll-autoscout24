@@ -1,4 +1,4 @@
-require "jekyll/autoscout24/version"
+require "jekyll-autoscout24/version"
 
 module Jekyll
   module Autoscout24
