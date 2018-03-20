@@ -1,0 +1,10 @@
+# Load our plugin
+plugins:
+  - jekyll-autoscout24
+# Exclude unused files to speed up the build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - features
+  - jekyll_output.txt
+  - jekyll_status.txt
