@@ -1,7 +1,8 @@
 PATH
   remote: ../jekyll-autoscout24
   specs:
-    jekyll-autoscout24 (0.1.0)
+    jekyll-autoscout24 (0.1.1)
+      ox (= 2.9.0)
 
 GEM
   remote: https://rubygems.org/
@@ -53,6 +54,7 @@ GEM
     mercenary (0.3.6)
     multi_json (1.13.1)
     multi_test (0.1.2)
+    ox (2.9.0)
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
     public_suffix (3.0.2)

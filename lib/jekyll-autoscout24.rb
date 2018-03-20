@@ -1,7 +1,4 @@
-require "jekyll-autoscout24/version"
+require "ox"
 
-module Jekyll
-  module Autoscout24
-    # Your code goes here...
-  end
-end
+require "jekyll-autoscout24/backup_reader"
+require "jekyll-autoscout24/version"
