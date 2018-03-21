@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "liquid", "4.0.0"
   spec.add_dependency "jekyll", ENV["JEKYLL_VERSION"] ? "~> #{ENV["JEKYLL_VERSION"]}" : "~> 3.1"
 
-  spec.add_development_dependency "bundler", "~> 1.11"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "bundler", "1.16.1"
+  spec.add_development_dependency "rake", "12.3.0"
+  spec.add_development_dependency "minitest", "~> 5.11.3"
   spec.add_development_dependency "gem-release", "1.0.0"
 end
