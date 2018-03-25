@@ -14,8 +14,8 @@ module Jekyll
         backup = Ox.load_file("#{dir}/autoscout24.xml")
         # Locate all vehicle nodes in the backup document
         vehicles, nodes = [], backup.locate("stx3/vehicle_data/vehicles/vehicle")
-        # Transform each node found into an instance of Vehicle drop
-        nodes.each { |n| vehicles << Vehicle.new(n) }
+        # Transform each node found into an instance of Entry drop
+        nodes.each { |n| vehicles << Entry.new(n) }
         # Merge current site data with the list of vehicles from the backup
         @site.data.merge!("autoscout24" => vehicles) unless vehicles.empty?
       end
@@ -26,7 +26,7 @@ module Jekyll
     # The main use for liquid drops is to implement lazy loaded objects.
     # If you would like to make data available to the web designers which you don't want loaded unless needed then
     # a drop is a great way to do that.
-    class Vehicle < Liquid::Drop
+    class Entry < Liquid::Drop
       attr_reader :node
 
       # ctor
@@ -36,9 +36,12 @@ module Jekyll
 
       # Catch all method to be flexible and adaptable based on the XML structure provided.
       def liquid_method_missing(name)
-        found = @node.locate(name)
-        return nil if found.empty?
-        found.first.text
+        # lookup child node by name
+        found = @node.locate(name).first
+        # no match or empty node, therefore nil
+        return nil if found.nil? || found.nodes.empty?
+        # either text or recurse
+        found.text === nil ? Entry.new(found) : found.text
       end
     end
   end
