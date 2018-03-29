@@ -28,7 +28,7 @@ end
 
 ## Usage
 
-1. In your site source root, make a `backup` directory. Place your autoscout24.xml file here.
+1. In your site source root, make a `backup` directory. Place your `autoscout24.xml` file here.
 2. Start Jekyll as you would normally (`bundle exec jekyll serve`).
 
 ## Development
