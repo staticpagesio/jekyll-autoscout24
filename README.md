@@ -1,30 +1,8 @@
 # Jekyll::Autoscout24
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll/autoscout24`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Jekyll plugin that provides owners of an Autoscout24 account a bridge between their backup XML file and a Jekyll site.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'jekyll-autoscout24'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install jekyll-autoscout24
-
-## Usage
-
-In your site source root, make a backup directory. Place your autoscout24.xml file here. After done this install the plugin.
-
-### Install the plugin
 
 You have 3 options for installing jekyll-autoscout24:
 
@@ -40,13 +18,18 @@ plugins:
 
 Then install your plugin using `gem install jekyll-autoscout24`
 
-3. Add the relevant plugin to a Bundler group in your `Gemfile`. An example:
+3. Add the plugin to a Bundler group in your `Gemfile`. An example:
 
 ```
 group :jekyll_plugins do
 gem "jekyll-autoscout24"
 end
 ```
+
+## Usage
+
+1. In your site source root, make a `backup` directory. Place your autoscout24.xml file here.
+2. Start Jekyll as you would normally (`bundle exec jekyll serve`).
 
 ## Development
 
