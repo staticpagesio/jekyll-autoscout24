@@ -13,11 +13,11 @@ module Jekyll
         # Load XML data from the backup file
         backup = Ox.load_file("#{dir}/autoscout24.xml")
         # Locate all vehicle nodes in the backup document
-        vehicles, nodes = [], backup.locate("stx3/vehicle_data/vehicles/vehicle")
+        vehicles, nodes = [], backup.locate('stx3/vehicle_data/vehicles/vehicle')
         # Transform each node found into an instance of Entry drop
         nodes.each { |n| vehicles << Entry.new(n) }
         # Merge current site data with the list of vehicles from the backup
-        @site.data.merge!("autoscout24" => vehicles) unless vehicles.empty?
+        @site.data.merge!('autoscout24' => vehicles) unless vehicles.empty?
       end
     end
 
@@ -40,8 +40,27 @@ module Jekyll
         found = @node.locate(name).first
         # no match or empty node, therefore nil
         return nil if found.nil? || found.nodes.empty?
+        # could be an array
+        return Prices.new(found) if name == 'prices'
         # either text or recurse
         found.text === nil ? Entry.new(found) : found.text
+      end
+    end
+
+    class Prices < Liquid::Drop
+      include Enumerable
+
+      attr_reader :node
+
+      # ctor
+      def initialize(node)
+        @node = node
+      end
+
+      def each
+        @node.locate('price').each do |n|
+          yield Entry.new(n)
+        end
       end
     end
   end
