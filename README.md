@@ -22,10 +22,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your site source root, make a backup directory. Place your autoscout24.xml file here. After done this install the plugin.
 
-The plugin jekyll-autoscout24 add to your jekyll project a folder called *autoscout24backup* in which you must put the *autoscout24backup.xml* file previously downloaded from your account AutoScout24.
-Soon continued..
+### Install the plugin
+
+You have 3 options for installing jekyll-autoscout24:
+
+1. In your site source root, make a `_plugins` directory. Place your plugin here.
+Any file ending in `*.rb` inside this directory will be loaded before Jekyll generates your site.
+
+2. In your `_config.yml` file, add a new array with the key `plugins` (or `gems` for Jekyll < `3.5.0`) and the values of the gem name of the plugin:
+
+```
+plugins:
+  - jekyll-autoscout24
+```
+
+Then install your plugin using `gem install jekyll-autoscout24`
+
+3. Add the relevant plugin to a Bundler group in your `Gemfile`. An example:
+
+```
+group :jekyll_plugins do
+gem "jekyll-autoscout24"
+end
+```
 
 ## Development
 
