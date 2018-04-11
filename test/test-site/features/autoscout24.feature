@@ -826,3 +826,67 @@ Feature: AutoScout24
     When I run jekyll build
     Then the "_site/index.html" file should exist
     And I should see exactly "37000" in "_site/index.html"
+
+  Scenario: parse 'vehicle/warranty_duration' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <warranty_duration>24</warranty_duration>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{vehicle.warranty_duration }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "24" in "_site/index.html"
+
+  Scenario: parse 'vehicle/delivery/delivery_time' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <delivery>
+              <delivery_time />
+            </delivery>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{vehicle.delivery.delivery_time }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "" in "_site/index.html"
+
+  Scenario: parse 'vehicle/delivery/delivery_date' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <delivery>
+              <delivery_date>2017-05-22T00:00:00</delivery_date>
+            </delivery>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{vehicle.delivery.delivery_date }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "2017-05-22T00:00:00" in "_site/index.html"
