@@ -890,3 +890,56 @@ Feature: AutoScout24
     When I run jekyll build
     Then the "_site/index.html" file should exist
     And I should see exactly "2017-05-22T00:00:00" in "_site/index.html"
+
+  Scenario: parse 'vehicle/equipments/equipment/i-th/text' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <equipments>
+              <equipment>
+                <text>ABS</text>
+              </equipment>
+              <equipment>
+                <text> Airbag conducente</text>
+              </equipment>
+            </equipments>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{% for equipment in vehicle.equipments %}{{ equipment.text }}{% endfor %}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "ABS Airbag conducente" in "_site/index.html"
+
+  Scenario: parse 'vehicle/media/images/image/i-th/uri' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <media>
+              <images>
+                <image>
+                  <uri>http://pic.autoscout24.net/images/764/565/0336565764001.jpg</uri>
+                </image>
+              </images>
+            </media>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.media.images.first.uri }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "http://pic.autoscout24.net/images/764/565/0336565764001.jpg" in "_site/index.html"

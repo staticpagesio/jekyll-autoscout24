@@ -42,8 +42,44 @@ module Jekyll
         return nil if found.nil? || found.nodes.empty?
         # could be an array
         return Prices.new(found) if name == 'prices'
+        return Equipments.new(found) if name == 'equipments'
+        return Images.new(found) if name == 'images'
         # either text or recurse
         found.text === nil ? Entry.new(found) : found.text
+      end
+    end
+
+    class Images < Liquid::Drop
+      include Enumerable
+
+      attr_reader :node
+
+      # ctor
+      def initialize(node)
+        @node = node
+      end
+
+      def each
+        @node.locate("image").each do |n|
+          yield Entry.new(n)
+        end
+      end
+    end
+
+    class Equipments < Liquid::Drop
+      include Enumerable
+
+      attr_reader :node
+
+      # ctor
+      def initialize(node)
+        @node = node
+      end
+
+      def each
+        @node.locate("equipment").each do |n|
+          yield Entry.new(n)
+        end
       end
     end
 
