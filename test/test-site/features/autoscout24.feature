@@ -943,3 +943,151 @@ Feature: AutoScout24
     When I run jekyll build
     Then the "_site/index.html" file should exist
     And I should see exactly "http://pic.autoscout24.net/images/764/565/0336565764001.jpg" in "_site/index.html"
+
+  Scenario: parse 'vehicle/product_bookings/product/i-th/name' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <product_bookings>
+              <product>
+                <name>fa</name>
+              </product>
+            </product_bookings>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.product_bookings.first.name }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "fa" in "_site/index.html"
+
+  Scenario: parse 'vehicle/product_bookings/product/i-th/status' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <product_bookings>
+              <product>
+                <status>false</status>
+              </product>
+            </product_bookings>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.product_bookings.first.status }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "false" in "_site/index.html"
+
+  Scenario: parse 'vehicle/previous_owner' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <previous_owner />
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.previous_owner }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "" in "_site/index.html"
+
+  Scenario: parse 'vehicle/accident_free' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <accident_free>true</accident_free>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.accident_free }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "true" in "_site/index.html"
+
+  Scenario: parse 'vehicle/kerb_weight' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <kerb_weight>1430</kerb_weight>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.kerb_weight }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "1430" in "_site/index.html"
+
+  Scenario: parse 'vehicle/alloy_wheels_size' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <alloy_wheels_size>18</alloy_wheels_size>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.alloy_wheels_size }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "18" in "_site/index.html"
+
+  Scenario: parse 'vehicle/seats' from autoscout24.xml
+    Given I have a _data directory
+    And I have a "_data/autoscout24.xml" file with content:
+    """
+    <?xml version="1.0" encoding="utf-8"?>
+    <stx3>
+      <vehicle_data>
+        <vehicles>
+          <vehicle>
+            <seats>5</seats>
+          </vehicle>
+        </vehicles>
+      </vehicle_data>
+    </stx3>
+    """
+    And I have an "index.html" page that contains "{% for vehicle in site.data.autoscout24 %}{{ vehicle.seats }}{% endfor %}"
+    When I run jekyll build
+    Then the "_site/index.html" file should exist
+    And I should see exactly "5" in "_site/index.html"

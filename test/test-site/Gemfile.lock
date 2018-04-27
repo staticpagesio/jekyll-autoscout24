@@ -1,7 +1,7 @@
 PATH
   remote: ../jekyll-autoscout24
   specs:
-    jekyll-autoscout24 (0.1.5)
+    jekyll-autoscout24 (0.1.6)
       jekyll (~> 3.6.2)
       liquid (= 4.0.0)
       ox (= 2.9.0)

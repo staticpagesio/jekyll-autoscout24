@@ -40,12 +40,33 @@ module Jekyll
         found = @node.locate(name).first
         # no match or empty node, therefore nil
         return nil if found.nil? || found.nodes.empty?
-        # could be an array
+        # special processing for prices collection
         return Prices.new(found) if name == 'prices'
+        # special processing for equipments collection
         return Equipments.new(found) if name == 'equipments'
+        # special processing for images collection
         return Images.new(found) if name == 'images'
+        # special processing for product_bookings collection
+        return ProductBookings.new(found) if name == 'product_bookings'
         # either text or recurse
         found.text === nil ? Entry.new(found) : found.text
+      end
+    end
+
+    class ProductBookings < Liquid::Drop
+      include Enumerable
+
+      attr_reader :node
+
+      # ctor
+      def initialize(node)
+        @node = node
+      end
+
+      def each
+        @node.locate("product").each do |n|
+          yield Entry.new(n)
+        end
       end
     end
 
